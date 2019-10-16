@@ -33,7 +33,9 @@ int main(int argc, char** argv) {
   {
       // necessary conditions for the assertion failure to happen
       // - build in optimized mode (in debug mode things work correctly)
-      // - the grpc_slcie_alt struct needs to have a fixed-size array embedded in it
+      // - the grpc_slice_alt struct needs to contain a fixed-size array
+      // - grpc_slice_alt implementation has to be in a different library
+      
       std::cerr << "Assertion failed\n";
       std::cerr << "This should never happen and means that the compiler has wrongly assumed\n";
       std::cerr << "that src1 and src2 addresses are not observable and has reduced src1 and src2 into\n";
