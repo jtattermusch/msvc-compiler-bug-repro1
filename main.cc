@@ -28,14 +28,14 @@ int main(int argc, char** argv) {
   // - the src1.refcount will always be nullptr (see grpc_empty_slice_alt function)
   //   but compiler doesn't seem to be able to guess that because grpc_empty_slice_alt definition
   //   is in a different library (if we move its code locally, compiler behaves correctly)
-  // 
+  //
   if ((src1.refcount ? nullptr : src1.bytes) == (src2.refcount ? nullptr : src2.bytes))
   {
       // necessary conditions for the assertion failure to happen
       // - build in optimized mode (in debug mode things work correctly)
       // - the grpc_slice_alt struct needs to contain a fixed-size array
-      // - grpc_slice_alt implementation has to be in a different library
-      
+      // - grpc_slice_alt implementation has to be in a different compilation unit
+
       std::cerr << "Assertion failed\n";
       std::cerr << "This should never happen and means that the compiler has wrongly assumed\n";
       std::cerr << "that src1 and src2 addresses are not observable and has reduced src1 and src2 into\n";
