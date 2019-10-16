@@ -12,7 +12,7 @@ cc_library(
 )
 
 cc_binary(
-    name = "slice_test_binary",
+    name = "main",
     srcs = ["main.cc"],
     deps = [
         "//:grpc_slice_alt"
